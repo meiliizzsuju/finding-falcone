@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;700&display=swap');
+
+
+h1,h2,h3,h4,h5,h6,body,a,button,input,select,option{
+  font-family: 'Roboto Mono', monospace;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none; /* fix weird fontsize rendering on ios */
+  font-smoothing: antialiased;
+}
+
+a,button,input,select,option{
+  cursor: pointer;
+}
+
+
+.hidden{
+  display: none;
+}
+
+.btn{
+  &-big{
+    font-size: 1em;
+
+    background-color:#b4b1ae;
+    display:block;
+    position:relative;
+    padding: 0.5em 1em;
+    
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    text-shadow: 0px 1px 0px #000;
+    filter: dropshadow(color=#000, offx=0px, offy=1px);
+    
+    -webkit-box-shadow:inset 0 1px 0 #e5e5e5, 0 0.5em 0 #646464;
+    -moz-box-shadow:inset 0 1px 0 #e5e5e5, 0 0.5em 0 #646464;
+    box-shadow:inset 0 1px 0 #e5e5e5, 0 0.5em 0 #646464;
+    
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    &:active{
+      top:0.5em;
+      background-color:#b4b1ae;
+      
+      -webkit-box-shadow:inset 0 1px 0 #e5e5e5, inset 0 -3px 0 #646464;
+      -moz-box-shadow:inset 0 1px 0 #e5e5e5, inset 0 -3pxpx 0 #646464;
+      box-shadow:inset 0 1px 0 #e5e5e5, inset 0 -3px 0 #646464;
+    }
+  }
+}
+
+
+// header
+.App-header{
+  position: relative;
+  margin: 1em;
+  padding: 1em;
+  text-align: center;
+}
+.top-nav{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+
+
+// MS
+.missioncontroll{
+  padding: 0 2em 2em;
+  &_cal{
+    padding: 1em;
+    text-align: center;
+
+    font-weight: 600;
+    font-size: 2em;
+  }
+  &_form{
+    .btn-big{
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+
+
+
+
+/* -------------- Elements --------------- */
+.destination-box{
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events:  none;
+
+  border: 1px solid #808080;
+  padding: 1em;
+  height: 0;
+
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+
+  &.reveal{
+    opacity: 1;
+    pointer-events:  all;
+    height: auto;
+  }
+  &_top{
+    margin-bottom: 0.75em;
+    &_title{
+      display: inline-block;
+      font-weight: 600;
+    }
+  }
+  &_dropdown{
+    margin-top: 1em;
+  }
+  &_bottom{
+    opacity: 0.5;
+    pointer-events:  none;
+    &.reveal{
+      opacity: 1;
+      pointer-events:  all;
+    }
+  }
+}
+
+.destination-box + .destination-box{
+  margin-top: 2em;
+}
+
+
+.vehicles{
+  fieldset{
+    border: 0;
+    padding: 0;
+  }
+  &-checkbox{
+    > input{
+
+    }
+  }
+}
+
+.dropdown{
+  padding: 0.25em;
+}
+
+
+.fiding-form{
+  text-align: center;
+}
+
+
+.radio-wraper[data-avail='false']{
+  pointer-events:  none;
+}
+
+.radio-wraper{
+  display: block;
+  > label{
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    z-index: 0;
+    > input{
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      &:checked ~ .checkmark {
+        background-color: #2196F3;
+      }
+      &:checked ~ .checkmark:after {
+        display: block;
+      }
+    }
+    &:hover >input ~ .checkmark {
+      background-color: #ccc;
+    }
+  }
+  &.not-avail{
+    pointer-events:  none;
+    opacity: 0.5;
+    color: #5a5a5a;
+  }
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  &:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }  
+}
+
+
+.successbox{
+  padding: 0 2rem 2rem;
+  text-align: center;
+  &-top{
+    font-size: 18px;
+  }
+  &-bottom{
+    font-size: 18px;
+    > span{
+      display: block;
+      margin-bottom: 1em;
+      font-weight: 600;
+    }
+    .btn-big{
+      margin: 0 auto;
+    }
+  }
+}
+
+/* -------------- media query --------------- */
+@media screen and (min-width: 789px) {
+  body{
+    font-size: 12px;
+  }
+  select,option,button{
+    font-size: 10px;
+  }
+
+  .radio-wraper {
+    > label{
+      padding-top: 0.45em;
+    }
+  }
+
+  .missioncontroll{
+    &_container{
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: start;
+      -ms-flex-align: start;
+      align-items: flex-start;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+  }
+
+  .destination-box{
+    width: calc(25% - 3em);
+    + .destination-box{
+      margin-top: 0;
+    }
+  }
+  
+  .successbox {
+    padding: 4em;
+    &-top,
+    &-bottom {
+      font-size: 20px;
+      > span{
+        margin-bottom: 2em;
+        margin-top: 2em;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .destination-box{
+    padding: 1.5em;
+    width: calc(25% - 4.5em);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  body,select,option,button{
+    font-size: 14px;
+  }
+
+  .App-header{
+    margin: 3em;
+  }
+
+  .missioncontroll {
+    padding: 0 6em 6em;
+    &_cal{
+      padding: 2em;
+    }
+    &_form{
+      .btn-big{
+        font-size: 1.3em;
+        padding: 1.5em 3em;
+      }
+    }
+  }
+
+  .destination-box{
+    padding: 2em;
+    &_top {
+      margin-bottom: 1.5em;
+    }
+  }
+}
+
+
+@media screen and (min-width: 2000px) {
+  body,select,option,button{
+    font-size: 1.5rem;
+  }
+}
